@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
+import InstallPWA from '@/components/install-pwa';
 
 export const metadata: Metadata = {
   title: 'FlowDash',
@@ -28,6 +29,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
           {children}
           <Toaster />
+          <InstallPWA />
         </ThemeProvider>
       </body>
     </html>
