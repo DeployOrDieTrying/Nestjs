@@ -27,4 +27,5 @@ export default withPWA({
   dest: 'public',
   register: true,
   skipWaiting: true,
+  scope: '/',
 })(nextConfig);
