@@ -23,7 +23,6 @@ const nextConfig: NextConfig = {
   },
 };
 
-// @ts-ignore
 export default withPWA({
   dest: 'public',
   register: true,
