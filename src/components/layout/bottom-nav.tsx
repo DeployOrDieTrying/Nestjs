@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { Home, Briefcase, Send, Settings, Plus, Tag, Gamepad2, PlaySquare, Book, Newspaper, MessageSquare, Google } from 'lucide-react';
+import { Home, Briefcase, Send, Settings, Plus, Tag, Gamepad2, PlaySquare, Book, Newspaper, MessageSquare, Goal } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import type { ProjectCategory } from '@/app/page';
 
@@ -25,14 +25,11 @@ const settingItems = [
 ];
 
 const expandItems = [
-  { id: 'google', icon: Google, title: 'Google', url: 'https://google.com' },
-  { id: 'chatbot-ai', icon: MessageSquare, title: 'Chatbot AI', url: 'https://gemini.google.com/' },
   { id: 'games', icon: Gamepad2, title: 'Games', url: '/games' },
   { id: 'media', icon: PlaySquare, title: 'Media', url: '/media' },
   { id: 'courses', icon: Book, title: 'Courses', url: '/courses' },
   { id: 'deals', icon: Tag, title: 'Deals', url: '/deals' },
   { id: 'article', icon: Newspaper, title: 'Articles', url: '/article' },
-  { id: 'projects', icon: Briefcase, title: 'Projects', url: '/projects' },
 ];
 
 export function BottomNav({ activeSection, setActiveSection, onCategorySelect, onIframeOpen }: BottomNavProps) {
@@ -60,7 +57,11 @@ export function BottomNav({ activeSection, setActiveSection, onCategorySelect, o
   
   const handleExpandLinkClick = (e: React.MouseEvent, item: (typeof expandItems)[number]) => {
     e.preventDefault();
-    window.open(item.url, '_blank', 'noopener,noreferrer');
+    if (item.url.startsWith('http')) {
+      window.open(item.url, '_blank', 'noopener,noreferrer');
+    } else {
+      setActiveSection(item.id as Section);
+    }
     setIsExpanded(false);
   };
 
